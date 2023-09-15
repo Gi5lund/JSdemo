@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!doctype html>
+    <html lang="en">
+    
+    <head>
+      <title>Title</title>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+      <!-- Bootstrap CSS v5.2.1 -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    
+    </head>
+    
+    <body>
+      <header>
+        <!-- place navbar here -->
+      </header>
+      <main>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th><th>Year</th><th>Make</th><th>Model</th><th>Price</th>
+            </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+        <form>
+            <label for="price"></label>
+        <div><input id="price" placeholder="input price ceiling">
+        <span style="display: inline-block; width: 2em;margin-top: 10px;"></span>
+        <button id="btn-b1" class="btn-primary btn" type="button">price less than</button>
+        <button id="btn-b2" class="btn-primary btn" type="button">clear</button>
+    </div>
+    </form>
+
+    <p>
+        Reflections
+        Replace this with your explanation of the following
+        jeg har benyttet template string til at min metode til at generere table-rows:
+        <i>  `<tr><td>${car.id}</td><td>${car.year}</td><td>${car.make}</td><td>${car.model}</td><td>${car.price}</td></tr>`
+       </i>
+        map metoden bruges i metoden til at udfylde de dynamiske placeholdere ${car.someProperty}
+        jeg har brugt filter-metoden til at sortere på pris og map-metoden til at returnere det sorterede array. det sorterede array
+        sættes ind som argument i createRows functionen som derved gentegner tabellen.
+      
+    </p>
+      </main>
+      <footer>
+        <!-- place footer here -->
+      </footer>
+      <script>
+        const cars = [
+  { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },
+  { id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900 },
+  { id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000 },
+  { id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799 },
+  { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
+];
+// const rows=cars.map(car =>{
+//   return `<tr><td>${car.id}</td><td>${car.year}</td><td>${car.make}</td><td>${car.model}</td><td>${car.price}</td></tr>`
+// }).join("");
+// document.getElementById("tbody").innerHTML=rows
+function createRows(carsArray){
+  const rows=carsArray.map(car =>{
+    return `<tr><td>${car.id}</td><td>${car.year}</td><td>${car.make}</td><td>${car.model}</td><td>${car.price}</td></tr>`
+  }).join("");
+  document.getElementById("tbody").innerHTML=rows
+}
+createRows(cars);
+const btn=document.querySelector("#btn-b1")
+btn.addEventListener("click",()=>{
+    const sortprice=document.querySelector("#price").value;
+    const sortcar=cars.filter(car=>car.price<=sortprice)
+    createRows(sortcar);
+    
+})
+const clearBtn=document.querySelector('#btn-b2')
+clearBtn.addEventListener('click',()=>{
+    document.querySelector("#price").value="";
+    createRows(cars);
+})
+      </script>
+      <!-- Bootstrap JavaScript Libraries -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+      </script>
+    
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+      </script>
+    </body>
+    
+    </html>
+</head>
+<body>
+    
+</body>
+</html>

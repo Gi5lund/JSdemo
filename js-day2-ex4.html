@@ -31,7 +31,21 @@
           <h4 id="car-make">
 
           </h4>
-          
+          <div>
+            <p>
+                Select elementet giver bedst mening med få elementer - siden bliver nemt fyldt op og 
+                brugeren skal kun vælge 1 eller nogle få ud af alle de muligheder hun præsenteres for.
+                
+                
+                jeg byggede option-listen analogt med den måde jeg bygged den unordedlist list fra tidligere opgave. options bygger listen
+                med de rette html-tag og <i>document.getelementById("car-selector").innerHTML=options </i>
+                fylder listen ind imellem select-start og slut tag.
+                for at løse opgaven med at skrive den valgte option under Selected Brand, lavede jeg en eventlistner 
+                på select's id og fangede den valgte option (eventbubbling). værdien af denne fanges  : 
+                <i>const selectedValue = carSelection.value;</i> og sættes efterfølgende:
+                <i>carMake.textContent = selectedValue;</i>
+                </p>
+          </div>
           <script>
           const cars = ["Ford", "WW", "Toyota", "Volvo"]; //Assume this was fetched from the backend
           //TODO 
@@ -44,6 +58,7 @@
             carMake.textContent = selectedValue;
             });
           
+            
           </script>
           
       </main>
