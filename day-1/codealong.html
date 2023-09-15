@@ -28,7 +28,7 @@
     //Will eventually (day 4) come from a server-API
     const names = ["Lars", "Peter", "Jan", "Lise", "Janne"]
     function makeList() {
-        const lis = names.map(n => `<li>${n}</li>`).join("")
+        const lis = names.map(n => `<li>${encode(n)}</li>`).join("")
         document.getElementById("ul1").innerHTML = lis
     }
     document.getElementById("initialize-btn").onclick = ()=>makeList()
@@ -39,21 +39,29 @@
     /****************************************************************************/
 
 
-    document.getElementById("btn-a1").onclick = (evt) => {
+    document.querySelector("#btn-a1").onclick = (evt) => {
     evt.preventDefault()
-const name = document.getElementById("name-input").value
+const name = document.querySelector("#name-input").value
 const listViewElement = document.createElement("li");
 listViewElement.appendChild(document.createTextNode(name))
-const ul = document.getElementById("ul1").appendChild(listViewElement)
-//We need to do something here
+const ul = document.querySelector("#ul1").appendChild(listViewElement)
+/names.push(name)
 console.log(names)
     }
 
-    document.getElementById("btn-a2").onclick = (evt) => {
-        //Insert code block 2
+    document.querySelector("#btn-a2").onclick = (evt) => {
+        evt.preventDefault()
+        document.querySelector("#ul1").firstChild.remove();
+//We need to do something here (shift)
+names.shift()
+console.log(names)
     }
-    document.getElementById("btn-a3").onclick = (evt) => {
-        //Insert code block 3
+    document.querySelector("#btn-a3").onclick = (evt) => {
+        evt.preventDefault()
+        document.querySelector("#ul1").lastChild.remove();
+       names.pop()
+console.log(names)
+
     }
 
     /****************************************************************************/
@@ -61,15 +69,23 @@ console.log(names)
     /****************************************************************************/
 
     document.getElementById("btn-b1").onclick = (evt) => {
-        //Insert code block 4
+        evt.preventDefault()
+const name = document.getElementById("name-input").value
+names.push(encode(name));
+makeList();
+
     }
 
     document.getElementById("btn-b2").onclick = (evt) => {
-        //Insert code block 5
+        evt.preventDefault()
+names.shift()
+makeList();
     }
 
     document.getElementById("btn-b3").onclick = (evt) => {
-        //Insert code block 6
+        evt.preventDefault()
+names.pop()
+makeList();
     }
     //Utility function you can use to escape "untrusted" data inputs
     //Ref: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
