@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <style>
+    .row-height-30 {
+      height: 35vh;
+    }
+    .row-height-55 {
+      height: 55vh;
+    }
+    .col {
+      border: 1px solid steelblue;
+    }
+  </style>
+</head>
+
+<body style="font-family: sans-serif">
+  <div style="margin-top:1em;margin-left: 3%;width: 90%;margin-right: auto;">
+    <h2>Car's 'R' Us Client Demo - Version poor ;-)</h2>
+    <div class="container-fluid">
+      <div class="row row-height-30">
+        <!--########################  SHOW ALL CARS OR MEMBERS ########################-->
+        <div class="col">
+          <h3>Show all Members or Cars</h3>
+          <button id="btn-get-all">Get all</button>
+          <p>Show what you find here</p>
+          <table style="display: block;" class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Price pr day</th>
+                <th>Best Discount</th>
+              </tr>
+            </thead>
+            <tbody style="display:block;max-height: 8em;overflow-y: scroll;" id="tbody">
+          </table>
+        </div>
+
+        <!--########################  FIND A SINGLE CAR OR MEMBER ########################-->
+        <div class="col">
+          <h3>Find a single Member or Car</h3>
+          <label for="text-for-id">Id</label>&nbsp;<input id="text-for-id" />
+          <button id="btn-find-car">Find</button>
+          <p id="found-car">Show what you find here</p>
+        </div>
+      </div>
+      <div class="row row-height-55">
+        <!--########################  ADD A CAR OR MEMBER ########################-->
+        <div class="col">
+          <h3>Add a Car or a Member</h3>
+          <form id="carRentalForm">
+            <div class="mb-3">
+              <label for="id" class="form-label">ID:</label>
+              <input type="text" class="form-control" id="id" name="id" readonly placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="brand" class="form-label">Brand:</label>
+              <input type="text" class="form-control" id="brand" name="brand" required>
+            </div>
+            <div class="mb-3">
+              <label for="model" class="form-label">Model:</label>
+              <input type="text" class="form-control" id="model" name="model" required>
+            </div>
+            <div class="mb-3">
+              <label for="pricePrDay" class="form-label">Price Per Day:</label>
+              <input type="number" step="0.01" class="form-control" id="pricePrDay" name="pricePrDay" required>
+            </div>
+            <div class="mb-3">
+              <label for="bestDiscount" class="form-label">Best Discount:</label>
+              <input type="number" class="form-control" id="bestDiscount" name="bestDiscount" required>
+            </div>
+            <!-- <button type="button" class="btn btn-primary" id="submitBtn">Submit</button> -->
+          </form>
+
+          <button id="submitBtn">Submit new item</button>
+          <p id="carresponse">Show returned data, if any</p>
+          <p>Use one of the two GET pages to verify that "something" was added</p>
+        </div>
+
+        <!--########################  EDIT A CAR OR MEMBER ########################-->
+        <div class="col">
+          <h3>Edit a Car or a Member</h3>
+          <label for="text-for-id2">Id</label>&nbsp;<input id="text-for-id2" />
+          <button id="item-to-edit">Find item to edit</button>
+          <p>Show what you find here, and let users edit fields</p>
+         
+          
+            <form id="car-edit-form">
+              <div class="mb-md-3">
+                <label for="id1" class="form-label">ID:</label>
+                <input type="text" class="form-control" id="id1" name="id" required placeholder="">
+              </div>
+              <div class="mb-md-3">
+                <label for="brand1" class="form-label">Brand:</label>
+                <input type="text" class="form-control" id="brand1" name="brand" required placeholder="">
+              </div>
+              <div class="mb-md-3">
+                <label for="model1" class="form-label">Model:</label>
+                <input type="text" class="form-control" id="model1" name="model" required placeholder="">
+              </div>
+              <div class="mb-md-3">
+                <label for="pricePrDay1" class="form-label">Price Per Day:</label>
+                <input type="number" step="0.01" class="form-control" id="pricePrDay1" name="pricePrDay" requiredplaceholder="">
+              </div>
+              <div class="mb-md-3">
+                <label for="bestDiscount1" class="form-label">Best Discount:</label>
+                <input type="number" class="form-control" id="bestDiscount1" name="bestDiscount" required placeholder="">
+              </div>
+              <!-- <button type="button" class="btn btn-primary" id="editbtn">Submit</button> -->
+            </form>
+          
+          
+          <button id="editbtn">Submit edited item</button>
+          <p id="carresponse1">......</p>
+          <p>Use one of the two GET pages to verify that "something" was added</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div>
+    
+ In this exercise I used the fetch method to make a GET, PUT, and POST request to my endpoint for a ressource.
+ The fetch method is pr default a GET request, so when making a POST or PUT request I must supply an options parameter 
+ besides the URL. The options parameter specifies the metod, the headers and the body. the options parameter is passed as 
+ a JSON object.
+ if the body doesnt align with the expected request and the endpoint, an error will occur (status 400 Bad request)
+ the headers-object specifies content type in this case but could include other headers with additional information.
+ the URL specifies the ressource endpoint for the request. Remember to augment the base-url to include the Id of 
+ the single ressource when making a POST, PUT or PATCH request. 
+
+  </div>
+  <script src="./js-day3-ex3.js"></script>
+</body>
+
+</html>

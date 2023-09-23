@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!doctype html>
+    <html lang="en">
+    
+    <head>
+      <title>Title</title>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+      <!-- Bootstrap CSS v5.2.1 -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    
+    </head>
+    
+    <body>
+      <header>
+        <!-- place navbar here -->
+      </header>
+      <main>
+        <div>
+          <form >
+            
+            <div><input id="userid" placeholder="input userId">
+            <span style="display: inline-block; width: 2em;margin-top: 10px;"></span>
+            <button id="btn-b1" class="btn-primary btn" type="button">Get user</button>
+            <button id="btn-b2" class="btn-primary btn" type="button">Get All</button>
+        </div>
+          </form>
+        </div>
+        <table class="table" id="user">
+            <thead>
+            <tr class="tableheaderrow">
+                
+            </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+        <table class="table" id="user">
+            <thead>
+            <tr class="tablehead">
+                
+            </tr>
+            </thead>
+            <tbody id="tbody1"></tbody>
+        </table>
+    <div>
+      <p>YOUR REPLY MUST INCLUDE (in a div on the page for the solution)
+        A "SHORT" description to the following
+        <i> <b> What is a promise:</b></i> Promise er et objekt. det repræsenterer den succesfulde eller fejlende 
+        gennemførelse af en asynkron operation samt værdien af denne operation. det muliggør at fortsætte afviklingen af et 
+        script.
+        <i> <b>b>What does the fetch method return:</b></i> Fetch metoden returnerer et Promise-objekt.
+        <i> <b>Why do we need to have two .then callbacks with our fetch code?:</b></i> første .then handler om respons på den afsendte request
+         (den indeholder bl.a. statuskoden) den næste .then handler om indholdet af dit respons.objekt. her får du dit Json objekt.
+         <i> <b>What can and should you do in the first?:</b></i> i den første kan vi fange status og fejlhåndtere.
+        <i> <b>What can and should you do in the last?:</b></i> i den sidste kan gribe indholdet og parse det på forskellig vis 
+        i forhold til vores behov
+        
+      </p>        
+    </div>
+      </main>
+      <footer>
+        <!-- place footer here -->
+      </footer>
+      <script>
+       
+       
+        const btn=document.querySelector("#btn-b1")
+        btn.addEventListener("click",()=>{
+            const userid=document.querySelector("#userid").value;
+            let url=`https://jsonplaceholder.typicode.com/users/${userid}`;
+        fetch(url)
+        .then(res =>res.json())
+        .then(data=>{showuser(data);
+         })
+         const rowheader= `<th>Name</th><th>Phone</th><th>Address</th>`;
+         document.querySelector("tablehead").innerHTML=rowheader;
+       
+        });
+    
+        const btn2=document.querySelector("#btn-b2")
+        btn2.addEventListener("click",()=>{
+            let url=`https://jsonplaceholder.typicode.com/users/`;
+            fetch(url)
+        .then(res =>res.json())
+        .then(data=>{ createRows(data);
+        })
+        const rowheader= `<th>Name</th><th>Phone</th>`;
+        document.querySelector("tableheaderrow").innerHTML=rowheader;
+    });
+
+    function showuser(data){
+        const address=data.address.forEach(element => {
+            address+element
+        });
+       const rows= `<tr><td>${data.name}</td><td>${data.phone}</td><td>${data.address}</td></tr>`;
+   
+  document.getElementById("tbody1").innerHTML=rows}
+
+        // function createRowHeader(data){
+        //     const keys=Object.keys(data)
+        //     const rowheader=keys.forEach()
+            
+
+        // }
+        function createRows(data){
+  const rows=data.map(user =>{
+    return `<tr><td>${user.name}</td><td>${user.phone}</td></tr>`
+  }).join("");
+  document.getElementById("tbody").innerHTML=rows
+}
+      </script>
+      <!-- Bootstrap JavaScript Libraries -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+      </script>
+    
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+      </script>
+    </body>
+    
+    </html>
+</head>
+<body>
+    
+</body>
+</html>
